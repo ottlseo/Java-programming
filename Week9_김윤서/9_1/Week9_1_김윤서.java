@@ -1,76 +1,70 @@
 import java.io.*;
 import java.util.*;
 
-public class Week9_1_±èÀ±¼­ {
+public class Week9_1_ê¹€ìœ¤ì„œ {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("==========");
-	    System.out.println("Àü°ø: »çÀÌ¹öº¸¾È");
-	    System.out.println("ÇĞ¹ø: 1971063");
-	    System.out.println("ÀÌ¸§: ±èÀ±¼­");
-	    System.out.println("==========");
-	    
 		Scanner kbd = new Scanner(System.in);
 		
 		System.out.println("File name for input:");
-		String inFileName = kbd.nextLine(); // ÀÔ·ÂÆÄÀÏ ÀÌ¸§ ÀÔ·Â¹Ş±â "numbers.dat"
+		String inFileName = kbd.nextLine(); // ì…ë ¥íŒŒì¼ ì´ë¦„ ì…ë ¥ë°›ê¸° "numbers.dat"
 		System.out.println("File name for output:");
-		String outFileName = kbd.nextLine(); // Ãâ·ÂÆÄÀÏ ÀÌ¸§ ÀÔ·Â¹Ş±â
+		String outFileName = kbd.nextLine(); // ì¶œë ¥íŒŒì¼ ì´ë¦„ ì…ë ¥ë°›ê¸°
 		
 		try {
 			ObjectInputStream inputStream 
 			= new ObjectInputStream(new FileInputStream(inFileName));
-			// binary ÆÄÀÏÀ» ÀĞ¾î¿À±â À§ÇØ 
+			// binary íŒŒì¼ì„ ì½ì–´ì˜¤ê¸° ìœ„í•´ 
 			ObjectOutputStream outputStream
 			= new ObjectOutputStream(new FileOutputStream(outFileName));
-			// »õ °ªÀ» ÀúÀåÇÒ ÆÄÀÏ
+			// ìƒˆ ê°’ì„ ì €ì¥í•  íŒŒì¼
 			
 			System.out.println("The numbers in File "+inFileName);
 			try {
-				while(true) { //¹«ÇÑ·çÇÁ
-					int anInteger = inputStream.readInt(); //inputStream¿¡¼­ °ªÀ» ÀĞ¾î¿È
+				while(true) { //ë¬´í•œë£¨í”„
+					int anInteger = inputStream.readInt(); //inputStreamì—ì„œ ê°’ì„ ì½ì–´ì˜´
 					System.out.println(anInteger);
-					outputStream.writeInt(anInteger*2); //2¸¦ °öÇÑ °ªÀ» outputStreamÀ» ÅëÇØ Ãâ·ÂÆÄÀÏ¿¡ ÀúÀå!
+					outputStream.writeInt(anInteger*2); //2ë¥¼ ê³±í•œ ê°’ì„ outputStreamì„ í†µí•´ ì¶œë ¥íŒŒì¼ì— ì €ì¥!
 				}
 			}
-			catch(EOFException e) { //EndOfFile -´õÀÌ»ó ÀĞ¾î¿Ã °ªÀÌ ¾øÀ¸¸é
+			catch(EOFException e) { //EndOfFile -ë”ì´ìƒ ì½ì–´ì˜¬ ê°’ì´ ì—†ìœ¼ë©´
 				System.out.println("End of reading from File, "+inFileName);
 				System.out.println(outFileName+" is generated.");
 				System.out.println("");
 				outputStream.close();
-				inputStream.close(); //µÎ ÆÄÀÏ ¸ğµÎ ´İ¾ÆÁØ´Ù.
+				inputStream.close(); //ë‘ íŒŒì¼ ëª¨ë‘ ë‹«ì•„ì¤€ë‹¤.
 			}
 		}
-		catch(FileNotFoundException e) { //ÆÄÀÏÀÌ ¾ø´Â°æ¿ì
+		catch(FileNotFoundException e) { //íŒŒì¼ì´ ì—†ëŠ”ê²½ìš°
 			System.out.println("Cannot find file "+inFileName);
 		}
-		catch(IOException e) { //Input-Output ¿¡¼­ ¹®Á¦»ı±æ °ÍÀ» ´ëºñÇØ ²À ½áÁÙ°Í
+		catch(IOException e) { //Input-Output ì—ì„œ ë¬¸ì œìƒê¸¸ ê²ƒì„ ëŒ€ë¹„í•´ ê¼­ ì¨ì¤„ê²ƒ
 			System.out.println("Problem with input from file "+inFileName);
 		}
 		
 		try {
 			ObjectInputStream newInputStream =
 					new ObjectInputStream(new FileInputStream(outFileName));
-			//outFileNameÀ» ´Ù½Ã ¿­¾î ÀĞ¾î¿À±â
+			//outFileNameì„ ë‹¤ì‹œ ì—´ì–´ ì½ì–´ì˜¤ê¸°
 			System.out.println("The numbers in new File, "+outFileName);
 			
 			try {
-				while(true) { //¹«ÇÑ·çÇÁ -°ªÀÌ ³¡³ª¸é EOFExceptionÀ¸·Î ´İ¾ÆÁÙ °Í
+				while(true) { //ë¬´í•œë£¨í”„ -ê°’ì´ ëë‚˜ë©´ EOFExceptionìœ¼ë¡œ ë‹«ì•„ì¤„ ê²ƒ
 					int doubleInteger = newInputStream.readInt();
 					System.out.println(doubleInteger);
 				}
 			}
-			catch(EOFException e) { //°ªÀÌ ³¡³­ °æ¿ì (EndOfFile -´õÀÌ»ó ÀĞ¾î¿Ã °ªÀÌ ¾øÀ¸¸é)
+			catch(EOFException e) { //ê°’ì´ ëë‚œ ê²½ìš° (EndOfFile -ë”ì´ìƒ ì½ì–´ì˜¬ ê°’ì´ ì—†ìœ¼ë©´)
 
 				System.out.println("End of reading from 2nd File, "+outFileName);
-				newInputStream.close(); //´İ¾ÆÁØ´Ù.
+				newInputStream.close(); //ë‹«ì•„ì¤€ë‹¤.
 			}
 		}
-		catch(FileNotFoundException e) {   //ÆÄÀÏÀÌ ¾ø´Â°æ¿ì
+		catch(FileNotFoundException e) {   //íŒŒì¼ì´ ì—†ëŠ”ê²½ìš°
 			System.out.println("Cannot find File "+outFileName);
 		}
-		catch (IOException e) { //Input-Output ¿¡¼­ ¹®Á¦»ı±æ °ÍÀ» ´ëºñÇØ ²À ½áÁÙ°Í
+		catch (IOException e) { //Input-Output ì—ì„œ ë¬¸ì œìƒê¸¸ ê²ƒì„ ëŒ€ë¹„í•´ ê¼­ ì¨ì¤„ê²ƒ
 			System.out.println("Problem with input from File "+outFileName);
 		}
 	}
